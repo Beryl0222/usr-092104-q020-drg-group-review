@@ -1,0 +1,9 @@
+{
+  "event_id": "sample-020",
+  "event_type": "CASE_SIGNED",
+  "aggregate_type": "rule_package",
+  "aggregate_id": "aggregate-020",
+  "occurred_at": "2026-09-20T12:00:00+08:00",
+  "version": 1,
+  "summary": "病种付费归组复核领域样例"
+}
