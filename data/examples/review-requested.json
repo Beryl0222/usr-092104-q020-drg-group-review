@@ -1,0 +1,13 @@
+{
+  "event_id": "evt-20260921-0001",
+  "event_type": "REVIEW_REQUESTED",
+  "aggregate_type": "review_task",
+  "aggregate_id": "rt-2026-000789",
+  "occurred_at": "2026-09-21T09:20:00+08:00",
+  "version": 1,
+  "summary": "住院总费用超过同候选组费用界限，进入高费用复核路径",
+  "case_id": "case-2026-000123",
+  "path": "high_cost",
+  "reason": "住院总费用超过同候选组费用界限",
+  "related_refs": ["gc-2026-000456"]
+}

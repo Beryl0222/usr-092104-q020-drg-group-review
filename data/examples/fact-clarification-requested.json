@@ -1,0 +1,22 @@
+{
+  "event_id": "evt-20260920-0003",
+  "event_type": "FACT_CLARIFICATION_REQUESTED",
+  "aggregate_type": "inpatient_case",
+  "aggregate_id": "case-2026-000123",
+  "occurred_at": "2026-09-20T11:05:00+08:00",
+  "version": 2,
+  "summary": "提示两项影响分组的待澄清事实",
+  "case_id": "case-2026-000123",
+  "questions": [
+    {
+      "item_ref": "facts.procedures[0]",
+      "reason": "手术记录缺少机器人操作时段与器械记录，机器人手术细分组依据不足",
+      "affects": ["MUB-ROBO-A", "MUB-SURG-B"]
+    },
+    {
+      "item_ref": "facts.treatments[0]",
+      "reason": "医嘱单未列联合治疗具体药品与疗程，肿瘤联合治疗规则无法判定",
+      "affects": ["MUB-ROBO-A"]
+    }
+  ]
+}

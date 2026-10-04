@@ -1,0 +1,14 @@
+{
+  "event_id": "evt-20261028-0002",
+  "event_type": "ACCESS_RECORDED",
+  "aggregate_type": "access_record",
+  "aggregate_id": "ar-2026-000111",
+  "occurred_at": "2026-10-28T11:05:00+08:00",
+  "version": 1,
+  "summary": "医保审核方读取结算决定及调整分录用于资金回放",
+  "actor": "mi-auditor-07",
+  "actor_role": "medical_insurance_auditor",
+  "action": "read",
+  "subject_ref": "settlement_decision/sd-2026-000987",
+  "purpose": "按资金流水回放规则、病案、决定与调整"
+}

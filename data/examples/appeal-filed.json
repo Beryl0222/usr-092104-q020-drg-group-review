@@ -1,0 +1,14 @@
+{
+  "event_id": "evt-20261008-0001",
+  "event_type": "APPEAL_FILED",
+  "aggregate_type": "appeal_case",
+  "aggregate_id": "ap-2026-000654",
+  "occurred_at": "2026-10-08T10:00:00+08:00",
+  "version": 1,
+  "summary": "医院对术中耗材核减提出申诉",
+  "case_id": "case-2026-000123",
+  "filed_by": "hospital-a-mi-office",
+  "grounds": "对术中耗材核减结果有异议",
+  "materials": ["耗材使用记录", "手术记录"],
+  "target_decision_id": "sd-2026-000987"
+}

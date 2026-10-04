@@ -1,0 +1,13 @@
+{
+  "event_id": "evt-20260625-0001",
+  "event_type": "RULE_PACKAGE_PUBLISHED",
+  "aggregate_type": "rule_package",
+  "aggregate_id": "rp-yb-3",
+  "occurred_at": "2026-06-25T09:00:00+08:00",
+  "version": 3,
+  "summary": "医保3.0规则包3.0.2版发布：机器人手术、肿瘤联合治疗、年龄细分、特例单议",
+  "rule_package_version": "3.0.2",
+  "effective_from": "2026-07-01T00:00:00+08:00",
+  "policy_ref": "医保发〔2026〕31号",
+  "features": ["robotic_surgery", "combined_oncology_therapy", "age_segmentation", "exception_review"]
+}

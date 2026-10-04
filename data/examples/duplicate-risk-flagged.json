@@ -1,0 +1,13 @@
+{
+  "event_id": "evt-20260922-0001",
+  "event_type": "DUPLICATE_RISK_FLAGGED",
+  "aggregate_type": "inpatient_case",
+  "aggregate_id": "case-2026-000456",
+  "occurred_at": "2026-09-22T08:50:00+08:00",
+  "version": 3,
+  "summary": "检出撤回重提风险：与已撤回申报指向同一住院过程",
+  "case_id": "case-2026-000456",
+  "kind": "withdraw_resubmit",
+  "linked_case_ids": ["case-2026-000411"],
+  "detail": "同一患者同一住院期间曾申报后撤回，需人工核对是否重复结算"
+}

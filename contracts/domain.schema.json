@@ -23,7 +23,16 @@
         "GROUP_PROPOSED",
         "REVIEW_REQUESTED",
         "DECISION_ISSUED",
-        "SETTLEMENT_ADJUSTED"
+        "SETTLEMENT_ADJUSTED",
+        "RULE_PACKAGE_PUBLISHED",
+        "FACT_CLARIFICATION_REQUESTED",
+        "EXCEPTION_REQUESTED",
+        "EXCEPTION_DECIDED",
+        "APPEAL_FILED",
+        "APPEAL_DECIDED",
+        "RECALCULATION_COMPLETED",
+        "DUPLICATE_RISK_FLAGGED",
+        "ACCESS_RECORDED"
       ]
     },
     "aggregate_type": {
@@ -32,7 +41,12 @@
         "rule_package",
         "inpatient_case",
         "grouping_candidate",
-        "settlement_decision"
+        "settlement_decision",
+        "review_task",
+        "exception_request",
+        "appeal_case",
+        "recalculation_run",
+        "access_record"
       ]
     },
     "aggregate_id": {

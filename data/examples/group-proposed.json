@@ -1,0 +1,29 @@
+{
+  "event_id": "evt-20260920-0002",
+  "event_type": "GROUP_PROPOSED",
+  "aggregate_type": "grouping_candidate",
+  "aggregate_id": "gc-2026-000456",
+  "occurred_at": "2026-09-20T11:00:00+08:00",
+  "version": 1,
+  "summary": "按出院时点适用的3.0.2规则包生成候选组与逐项解释",
+  "case_id": "case-2026-000123",
+  "rule_package_id": "rp-yb-3",
+  "rule_package_version": "3.0.2",
+  "discharged_at": "2026-09-19T15:00:00+08:00",
+  "candidates": [
+    {
+      "group_code": "MUB-ROBO-A",
+      "explanations": [
+        { "item": "60.5x01 机器人辅助腹腔镜前列腺根治术", "effect": "符合机器人手术细分组条件" },
+        { "item": "C61.x00 主诊断", "effect": "定位泌尿男性生殖系统恶性肿瘤大类" },
+        { "item": "attributes.age_years=72", "effect": "适用70岁以上年龄细分" }
+      ]
+    },
+    {
+      "group_code": "MUB-SURG-B",
+      "explanations": [
+        { "item": "60.5x01", "effect": "若机器人操作记录不成立则回退普通手术组" }
+      ]
+    }
+  ]
+}

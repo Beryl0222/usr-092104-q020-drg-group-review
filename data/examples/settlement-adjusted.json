@@ -1,0 +1,16 @@
+{
+  "event_id": "evt-20261028-0001",
+  "event_type": "SETTLEMENT_ADJUSTED",
+  "aggregate_type": "settlement_decision",
+  "aggregate_id": "sd-2026-000987",
+  "occurred_at": "2026-10-28T11:00:00+08:00",
+  "version": 2,
+  "summary": "经批准按重算结果补差，差额分录入账，原结算保持不变",
+  "case_id": "case-2026-000123",
+  "original_decision_id": "sd-2026-000987",
+  "source": { "type": "recalculation", "ref": "rr-2026-10" },
+  "approval_ref": "mi-adjust-approval-2026-0198",
+  "difference_entries": [
+    { "item": "机器人手术细分组权重差", "delta_minor": 350000, "reason": "3.1.0规则包机器人手术权重上调" }
+  ]
+}

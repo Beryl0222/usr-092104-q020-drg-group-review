@@ -1,0 +1,18 @@
+{
+  "event_id": "evt-20260925-0001",
+  "event_type": "DECISION_ISSUED",
+  "aggregate_type": "settlement_decision",
+  "aggregate_id": "sd-2026-000987",
+  "occurred_at": "2026-09-25T10:00:00+08:00",
+  "version": 1,
+  "summary": "结算决定：MUB-ROBO-A组，按特例单议结果结算",
+  "case_id": "case-2026-000123",
+  "group_code": "MUB-ROBO-A",
+  "rule_package_id": "rp-yb-3",
+  "rule_package_version": "3.0.2",
+  "decided_by": "mi-settlement-officer-12",
+  "basis": { "type": "exception", "ref": "ex-2026-000321" },
+  "amount_minor": 15800000,
+  "currency": "CNY",
+  "duplicate_check": { "result": "clear" }
+}

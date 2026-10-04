@@ -1,0 +1,13 @@
+{
+  "event_id": "evt-20260923-0001",
+  "event_type": "EXCEPTION_DECIDED",
+  "aggregate_type": "exception_request",
+  "aggregate_id": "ex-2026-000321",
+  "occurred_at": "2026-09-23T16:40:00+08:00",
+  "version": 2,
+  "summary": "特例单议裁定：同意按实际合理费用结算",
+  "case_id": "case-2026-000123",
+  "decided_by": "mi-review-panel-03",
+  "outcome": "approved",
+  "materials": ["出院小结", "费用明细清单", "多学科会诊记录", "评审纪要"]
+}

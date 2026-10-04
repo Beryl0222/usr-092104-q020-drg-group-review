@@ -1,0 +1,13 @@
+{
+  "event_id": "evt-20260921-0002",
+  "event_type": "EXCEPTION_REQUESTED",
+  "aggregate_type": "exception_request",
+  "aggregate_id": "ex-2026-000321",
+  "occurred_at": "2026-09-21T14:00:00+08:00",
+  "version": 1,
+  "summary": "肿瘤联合治疗费用申请特例单议",
+  "case_id": "case-2026-000123",
+  "requested_by": "dept-urology-lin",
+  "reason": "联合治疗方案费用显著超出病组支付标准，申请特例单议",
+  "materials": ["出院小结", "费用明细清单", "多学科会诊记录"]
+}

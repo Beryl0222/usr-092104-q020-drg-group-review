@@ -1,9 +1,29 @@
 {
-  "event_id": "sample-020",
+  "event_id": "evt-20260920-0001",
   "event_type": "CASE_SIGNED",
-  "aggregate_type": "rule_package",
-  "aggregate_id": "aggregate-020",
-  "occurred_at": "2026-09-20T12:00:00+08:00",
+  "aggregate_type": "inpatient_case",
+  "aggregate_id": "case-2026-000123",
+  "occurred_at": "2026-09-20T10:30:00+08:00",
   "version": 1,
-  "summary": "病种付费归组复核领域样例"
+  "summary": "泌尿外科出院病案签署：机器人辅助腹腔镜前列腺根治术",
+  "case_id": "case-2026-000123",
+  "discharged_at": "2026-09-19T15:00:00+08:00",
+  "signed_by": "doctor-wang-017",
+  "signed_at": "2026-09-20T10:30:00+08:00",
+  "attributes": {
+    "age_years": 72,
+    "discharge_disposition": "home"
+  },
+  "facts": {
+    "diagnoses": [
+      { "code": "C61.x00", "name": "前列腺恶性肿瘤", "role": "principal", "source": "病案首页" },
+      { "code": "I10.x00", "name": "原发性高血压", "role": "other", "source": "病程记录" }
+    ],
+    "procedures": [
+      { "code": "60.5x01", "name": "机器人辅助腹腔镜前列腺根治术", "source": "手术记录" }
+    ],
+    "treatments": [
+      { "code": "L02BB", "name": "术后内分泌联合治疗", "source": "医嘱单" }
+    ]
+  }
 }
