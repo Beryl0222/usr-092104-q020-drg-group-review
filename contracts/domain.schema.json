@@ -19,11 +19,25 @@
     "event_type": {
       "type": "string",
       "enum": [
+        "RULE_PACKAGE_PUBLISHED",
         "CASE_SIGNED",
+        "CODING_PRESERVED",
         "GROUP_PROPOSED",
         "REVIEW_REQUESTED",
+        "FACT_CLARIFICATION_REQUESTED",
+        "SPECIAL_CASE_SUBMITTED",
+        "SPECIAL_CASE_DECIDED",
+        "APPEAL_FILED",
+        "APPEAL_DECIDED",
         "DECISION_ISSUED",
-        "SETTLEMENT_ADJUSTED"
+        "COMPARISON_RECALCULATED",
+        "SETTLEMENT_ADJUSTED",
+        "LEDGER_ENTRY_POSTED",
+        "CLAIM_SUBMITTED",
+        "CLAIM_WITHDRAWN",
+        "CLAIM_RESUBMITTED",
+        "CLAIM_DUPLICATE_BLOCKED",
+        "REFERRAL_LINKED"
       ]
     },
     "aggregate_type": {
@@ -31,8 +45,14 @@
       "enum": [
         "rule_package",
         "inpatient_case",
+        "signed_coding",
         "grouping_candidate",
-        "settlement_decision"
+        "review_task",
+        "special_case",
+        "appeal",
+        "settlement_decision",
+        "ledger_entry",
+        "claim"
       ]
     },
     "aggregate_id": {

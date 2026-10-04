@@ -1,9 +1,352 @@
-{
-  "event_id": "sample-020",
-  "event_type": "CASE_SIGNED",
-  "aggregate_type": "rule_package",
-  "aggregate_id": "aggregate-020",
-  "occurred_at": "2026-09-20T12:00:00+08:00",
-  "version": 1,
-  "summary": "病种付费归组复核领域样例"
-}
+[
+  {
+    "event_id": "evt-001",
+    "event_type": "RULE_PACKAGE_PUBLISHED",
+    "aggregate_type": "rule_package",
+    "aggregate_id": "pkg-yibao-3.0",
+    "occurred_at": "2026-01-01T00:00:00+08:00",
+    "version": 1,
+    "summary": "医保3.0规则包发布，覆盖机器人手术、肿瘤联合治疗与年龄细分",
+    "package_version": "YIBAO-3.0",
+    "effective_from": "2026-01-01",
+    "effective_to": null
+  },
+  {
+    "event_id": "evt-002",
+    "event_type": "REFERRAL_LINKED",
+    "aggregate_type": "inpatient_case",
+    "aggregate_id": "case-2026-0817",
+    "occurred_at": "2026-09-02T09:20:00+08:00",
+    "version": 1,
+    "summary": "患者由甲院转入，建立跨院转诊链，费用沿链归属以防双重支付",
+    "case_no": "ZY202609020817",
+    "referral_chain_id": "REF-2026-00412",
+    "prior_hospital_claim_id": "claim-jia-77410",
+    "prior_hospital_settled": true
+  },
+  {
+    "event_id": "evt-003",
+    "event_type": "CASE_SIGNED",
+    "aggregate_type": "inpatient_case",
+    "aggregate_id": "case-2026-0817",
+    "occurred_at": "2026-09-15T17:05:00+08:00",
+    "version": 2,
+    "summary": "医生签署出院病案，诊断/手术/治疗临床事实封存",
+    "case_no": "ZY202609020817",
+    "discharged_at": "2026-09-15T16:30:00+08:00",
+    "signed_by": "doctor-1023",
+    "rule_package_at_discharge": "pkg-yibao-3.0"
+  },
+  {
+    "event_id": "evt-004",
+    "event_type": "CODING_PRESERVED",
+    "aggregate_type": "signed_coding",
+    "aggregate_id": "coding-case-2026-0817",
+    "occurred_at": "2026-09-15T17:10:00+08:00",
+    "version": 1,
+    "summary": "已签署编码及来源原样保存，归组与结算只读，不允许为支付金额改写",
+    "case_id": "case-2026-0817",
+    "frozen": true,
+    "codes": [
+      { "code": "C18.9", "kind": "diagnosis", "signed_by": "doctor-1023", "source": "doctor_signed" },
+      { "code": "Z51.101", "kind": "therapy", "label": "肿瘤联合治疗-化疗周期", "signed_by": "doctor-1023", "source": "doctor_signed" },
+      { "code": "17.36001", "kind": "procedure", "label": "腹腔镜机器人辅助直肠癌根治术", "signed_by": "doctor-1023", "source": "operative_record" },
+      { "code": "ROBOT-SYS-09", "kind": "resource", "label": "达芬奇Xi使用记录", "source": "implant_log" },
+      { "code": "M8140/6", "kind": "diagnosis", "label": "病理腺癌", "source": "pathology" },
+      { "code": "AGE-BAND-65-74", "kind": "attribute", "label": "年龄细分 69 岁", "source": "doctor_signed" }
+    ]
+  },
+  {
+    "event_id": "evt-005",
+    "event_type": "GROUP_PROPOSED",
+    "aggregate_type": "grouping_candidate",
+    "aggregate_id": "cand-case-2026-0817",
+    "occurred_at": "2026-09-15T17:20:00+08:00",
+    "version": 1,
+    "summary": "按出院时点适用的医保3.0规则包给出候选组，逐项解释命中与未命中",
+    "case_id": "case-2026-0817",
+    "rule_package_version": "YIBAO-3.0",
+    "candidates": [
+      {
+        "group_id": "RB13",
+        "rank": 1,
+        "weight": 1.0,
+        "payment_standard": 58200,
+        "explanations": [
+          { "factor": "principal_diagnosis", "value": "C18.9", "hit": true, "basis_code": "C18.9" },
+          { "factor": "robotic_procedure", "value": "17.36001", "hit": true, "basis_code": "ROBOT-SYS-09", "note": "机器人加收以手术记录+设备登记双来源为准" },
+          { "factor": "oncology_combo", "value": "Z51.101", "hit": true, "basis_code": "Z51.101" },
+          { "factor": "age_band", "value": "AGE-BAND-65-74", "hit": true }
+        ]
+      },
+      {
+        "group_id": "RE15",
+        "rank": 2,
+        "weight": 0.62,
+        "payment_standard": 46700,
+        "explanations": [
+          { "factor": "principal_diagnosis", "value": "C18.9", "hit": true },
+          { "factor": "robotic_procedure", "hit": false, "note": "若设备登记缺件则不加收" }
+        ]
+      }
+    ]
+  },
+  {
+    "event_id": "evt-006",
+    "event_type": "REVIEW_REQUESTED",
+    "aggregate_type": "review_task",
+    "aggregate_id": "review-conflict-2026-0817",
+    "occurred_at": "2026-09-16T08:40:00+08:00",
+    "version": 1,
+    "summary": "主诊编码与病理形态学编码存在冲突，进入编码冲突复核路径",
+    "case_id": "case-2026-0817",
+    "review_path": "coding_conflict",
+    "conflicts": [
+      { "between": ["C18.9", "M8140/6"], "issue": "病理提示腺癌，主诊部位与形态学需临床确认" }
+    ]
+  },
+  {
+    "event_id": "evt-007",
+    "event_type": "FACT_CLARIFICATION_REQUESTED",
+    "aggregate_type": "review_task",
+    "aggregate_id": "review-conflict-2026-0817",
+    "occurred_at": "2026-09-16T08:45:00+08:00",
+    "version": 2,
+    "summary": "仅向临床提出待澄清事实清单，不提供改码建议，不展示支付金额对比",
+    "case_id": "case-2026-0817",
+    "questions": [
+      { "fact": "肿瘤原发部位是否为直肠乙状结肠交界处", "evidence_ref": "pathology/2026-09-10" },
+      { "fact": "机器人设备登记编号是否可补扫描件", "evidence_ref": "implant_log" }
+    ],
+    "forbidden_actions": ["rewrite_code", "show_revenue_diff"]
+  },
+  {
+    "event_id": "evt-008",
+    "event_type": "REVIEW_REQUESTED",
+    "aggregate_type": "review_task",
+    "aggregate_id": "review-highcost-2026-0817",
+    "occurred_at": "2026-09-16T09:30:00+08:00",
+    "version": 1,
+    "summary": "费用显著高于分组支付标准，进入高费用复核路径",
+    "case_id": "case-2026-0817",
+    "review_path": "high_cost",
+    "total_cost": 96800,
+    "payment_standard": 58200,
+    "cost_ratio": 1.66
+  },
+  {
+    "event_id": "evt-009",
+    "event_type": "SPECIAL_CASE_SUBMITTED",
+    "aggregate_type": "special_case",
+    "aggregate_id": "sc-2026-0817",
+    "occurred_at": "2026-09-17T10:00:00+08:00",
+    "version": 1,
+    "summary": "高费用病例提交特例单议申请，材料与提交权限完整留痕",
+    "case_id": "case-2026-0817",
+    "submitted_by": "coder-31",
+    "submitted_as_role": "insurance_office",
+    "materials": [
+      { "type": "cost_detail", "ref": "doc/cost-0817" },
+      { "type": "robot_utilization", "ref": "doc/robot-0817" },
+      { "type": "pathology", "ref": "pathology/2026-09-10" }
+    ]
+  },
+  {
+    "event_id": "evt-010",
+    "event_type": "SPECIAL_CASE_DECIDED",
+    "aggregate_type": "special_case",
+    "aggregate_id": "sc-2026-0817",
+    "occurred_at": "2026-09-22T15:00:00+08:00",
+    "version": 2,
+    "summary": "特例单议人工决定：同意按机器人加收与联合治疗据实补偿",
+    "case_id": "case-2026-0817",
+    "decided_by": "panel-03",
+    "decision": "approved_partial",
+    "approved_addition": 21400,
+    "rationale_ref": "decision/sc-2026-0817"
+  },
+  {
+    "event_id": "evt-011",
+    "event_type": "DECISION_ISSUED",
+    "aggregate_type": "settlement_decision",
+    "aggregate_id": "sd-2026-0817",
+    "occurred_at": "2026-09-23T11:00:00+08:00",
+    "version": 1,
+    "summary": "归组 RB13 与特例补偿的人工结算决定签发，临床科室视图不含收入信息",
+    "case_id": "case-2026-0817",
+    "final_group_id": "RB13",
+    "rule_package_version": "YIBAO-3.0",
+    "payable_total": 79600,
+    "issued_by": "reviewer-07"
+  },
+  {
+    "event_id": "evt-012",
+    "event_type": "LEDGER_ENTRY_POSTED",
+    "aggregate_type": "ledger_entry",
+    "aggregate_id": "ledger-case-2026-0817",
+    "occurred_at": "2026-09-23T11:05:00+08:00",
+    "version": 1,
+    "summary": "原始结算分笔录，资金可据此回放至规则、病案、编码与决定",
+    "case_id": "case-2026-0817",
+    "entry_kind": "original",
+    "amount": 79600,
+    "decision_id": "sd-2026-0817",
+    "trace": {
+      "rule_package": "pkg-yibao-3.0",
+      "signed_coding": "coding-case-2026-0817",
+      "candidate": "cand-case-2026-0817",
+      "special_case": "sc-2026-0817"
+    }
+  },
+  {
+    "event_id": "evt-013",
+    "event_type": "CLAIM_SUBMITTED",
+    "aggregate_type": "claim",
+    "aggregate_id": "claim-2026-0817",
+    "occurred_at": "2026-09-24T09:00:00+08:00",
+    "version": 1,
+    "summary": "乙院就本次住院全额申报，转诊链标记甲院已结算部分",
+    "case_id": "case-2026-0817",
+    "hospital_id": "hospital-yi",
+    "amount": 79600,
+    "referral_chain_id": "REF-2026-00412",
+    "idempotency_key": "submit:hospital-yi:ZY202609020817"
+  },
+  {
+    "event_id": "evt-014",
+    "event_type": "CLAIM_WITHDRAWN",
+    "aggregate_type": "claim",
+    "aggregate_id": "claim-2026-0817",
+    "occurred_at": "2026-09-24T14:00:00+08:00",
+    "version": 2,
+    "summary": "因材料补正撤回申报，原申报冻结不支付",
+    "case_id": "case-2026-0817",
+    "withdrawn_by": "coder-31",
+    "reason": "material_correction"
+  },
+  {
+    "event_id": "evt-015",
+    "event_type": "CLAIM_RESUBMITTED",
+    "aggregate_type": "claim",
+    "aggregate_id": "claim-2026-0817",
+    "occurred_at": "2026-09-26T10:00:00+08:00",
+    "version": 3,
+    "summary": "补正后重提，关联原申报，金额不重复支付",
+    "case_id": "case-2026-0817",
+    "replaces_claim_event": "evt-013",
+    "amount": 79600,
+    "idempotency_key": "resubmit:hospital-yi:ZY202609020817:2"
+  },
+  {
+    "event_id": "evt-016",
+    "event_type": "CLAIM_SUBMITTED",
+    "aggregate_type": "claim",
+    "aggregate_id": "claim-dup-2026-0817",
+    "occurred_at": "2026-09-26T10:20:00+08:00",
+    "version": 1,
+    "summary": "甲院就转诊前同一疗程再次申报（疑似重复）",
+    "case_id": "case-2026-0817",
+    "hospital_id": "hospital-jia",
+    "amount": 12300,
+    "referral_chain_id": "REF-2026-00412",
+    "idempotency_key": "submit:hospital-jia:ZY202609020817"
+  },
+  {
+    "event_id": "evt-017",
+    "event_type": "CLAIM_DUPLICATE_BLOCKED",
+    "aggregate_type": "claim",
+    "aggregate_id": "claim-dup-2026-0817",
+    "occurred_at": "2026-09-26T10:20:01+08:00",
+    "version": 2,
+    "summary": "命中转诊链与幂等键，重复申报拦截，未产生支付",
+    "case_id": "case-2026-0817",
+    "blocked_because": ["referral_chain_settled", "idempotency_key_duplicate"],
+    "payment_generated": false
+  },
+  {
+    "event_id": "evt-018",
+    "event_type": "RULE_PACKAGE_PUBLISHED",
+    "aggregate_type": "rule_package",
+    "aggregate_id": "pkg-yibao-3.1",
+    "occurred_at": "2026-10-01T00:00:00+08:00",
+    "version": 1,
+    "summary": "医保3.1规则包发布，调整机器人加收系数",
+    "package_version": "YIBAO-3.1",
+    "effective_from": "2026-10-01",
+    "effective_to": null
+  },
+  {
+    "event_id": "evt-019",
+    "event_type": "COMPARISON_RECALCULATED",
+    "aggregate_type": "settlement_decision",
+    "aggregate_id": "sd-2026-0817",
+    "occurred_at": "2026-10-02T03:00:00+08:00",
+    "version": 2,
+    "summary": "按3.1规则包对历史病例比较重算，仅产出对比，原结算不覆盖",
+    "case_id": "case-2026-0817",
+    "baseline_package": "YIBAO-3.0",
+    "comparison_package": "YIBAO-3.1",
+    "baseline_payable": 79600,
+    "comparison_payable": 76100,
+    "original_settlement_overwritten": false
+  },
+  {
+    "event_id": "evt-020",
+    "event_type": "SETTLEMENT_ADJUSTED",
+    "aggregate_type": "settlement_decision",
+    "aggregate_id": "sd-2026-0817",
+    "occurred_at": "2026-10-03T09:30:00+08:00",
+    "version": 3,
+    "summary": "联合治疗项目边界补录经人工批准，以差额分录处理",
+    "case_id": "case-2026-0817",
+    "approved_by": "audit-12",
+    "approved": true,
+    "difference_amount": 2800,
+    "difference_reason": "联合治疗项目边界补录"
+  },
+  {
+    "event_id": "evt-021",
+    "event_type": "LEDGER_ENTRY_POSTED",
+    "aggregate_type": "ledger_entry",
+    "aggregate_id": "ledger-case-2026-0817",
+    "occurred_at": "2026-10-03T09:35:00+08:00",
+    "version": 2,
+    "summary": "追加差额分录，原始分录保持不变",
+    "case_id": "case-2026-0817",
+    "entry_kind": "difference",
+    "amount": 2800,
+    "adjustment_event": "evt-020",
+    "trace": {
+      "rule_package": "pkg-yibao-3.0",
+      "signed_coding": "coding-case-2026-0817",
+      "candidate": "cand-case-2026-0817",
+      "special_case": "sc-2026-0817"
+    }
+  },
+  {
+    "event_id": "evt-022",
+    "event_type": "APPEAL_FILED",
+    "aggregate_type": "appeal",
+    "aggregate_id": "ap-2026-0817",
+    "occurred_at": "2026-10-03T15:00:00+08:00",
+    "version": 1,
+    "summary": "医院对差额调整依据提起申诉，材料与权限留痕",
+    "case_id": "case-2026-0817",
+    "filed_by": "insurance-office-yi",
+    "target_event": "evt-020",
+    "materials": [{ "type": "rule_interpretation", "ref": "doc/appeal-0817" }]
+  },
+  {
+    "event_id": "evt-023",
+    "event_type": "APPEAL_DECIDED",
+    "aggregate_type": "appeal",
+    "aggregate_id": "ap-2026-0817",
+    "occurred_at": "2026-10-04T10:30:00+08:00",
+    "version": 2,
+    "summary": "申诉驳回，维持差额分录；全过程可供医保审核方回放",
+    "case_id": "case-2026-0817",
+    "decided_by": "appeal-committee-02",
+    "decision": "rejected",
+    "rationale_ref": "decision/ap-2026-0817"
+  }
+]
